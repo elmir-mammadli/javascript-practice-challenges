@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -26,7 +27,7 @@ export default function RootLayout({
         <footer className="bg-white border-t border-gray-200 py-6">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="text-center text-sm text-gray-500">
-              © {new Date().getFullYear()} JavaScript Practice Tests. Built with Next.js and Tailwind CSS.
+              © {new Date().getFullYear()} JavaScript Practice Tests. By <Link href="https://elmir.dev" target="_blank" className="text-blue-500 hover:text-blue-600 hover:underline">Elmir Mammadli</Link>
             </p>
           </div>
         </footer>
