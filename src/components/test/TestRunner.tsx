@@ -140,11 +140,6 @@ export default function TestRunner({ testData }: TestRunnerProps) {
     }
   };
 
-  const applySolution = (solutionCode: string) => {
-    setCode(solutionCode);
-    setShowSolutions(false);
-  };
-
   const resetCode = () => {
     setCode(testData.initialCode);
     localStorage.removeItem(`code_${testData.id}`);
