@@ -49,15 +49,16 @@ export default function CodeEditor({ initialCode, onChange, onRunTests }: CodeEd
   return (
     <div className="border border-gray-300 rounded-lg overflow-hidden">
       <div className="bg-gray-100 px-4 py-2 border-b border-gray-300 flex justify-between items-center">
-        <span className="font-mono text-sm text-gray-700">JavaScript Code Editor</span>
+        <span className="text-sm text-gray-700">JavaScript Code Editor</span>
         <span className="text-xs text-gray-500">Press Ctrl+Enter to run tests</span>
       </div>
       <textarea
         ref={textareaRef}
-        className="w-full h-64 p-4 font-mono text-lg bg-gray-900 text-gray-100 focus:outline-none"
+        className="w-full h-72 p-6 text-lg bg-gray-800 text-gray-100 focus:outline-none"
         value={code}
         onChange={handleChange}
         spellCheck="false"
+        style={{ fontFamily: "var(--font-space-grotesk), monospace" }}
       />
     </div>
   );

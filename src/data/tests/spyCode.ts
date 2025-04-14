@@ -1,6 +1,6 @@
 export const spyCodeTest = {
     id: "spy-code",
-    title: "Task 2: Spy Code",
+    title: "Task 3: Spy Code",
     description: {
       en: {
         title: "Can You Read the Spy Code?",
@@ -12,7 +12,7 @@ export const spyCodeTest = {
   - The order of the lowercase letters reveals the secret message.
   
   Examples:
-  decodeSpy("WaDF!p@#pVGlFGe") ➞ "apple"
+  decodeSpy("WaDFpAWpVGlFGe") ➞ "apple"
   decodeSpy("ZXCbSDaWE!nDF?aVGnSAa") ➞ "banana"
   
   Hint: You only need to extract all the lowercase letters in order.`

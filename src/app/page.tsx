@@ -15,8 +15,8 @@ export default function Home() {
         </div>
         
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
-            <div className="px-6 py-5 bg-gray-50">
+          <div className="bg-white overflow-hidden shadow-md border border-gray-200 rounded-lg divide-y divide-gray-200">
+            <div className="px-6 py-5 bg-gray-100 opacity-80">
               <h3 className="text-lg font-medium text-gray-900">Available Challenges</h3>
             </div>
             <div className="divide-y divide-gray-200">
