@@ -10,17 +10,17 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "JavaScript Practice Tests",
+  title: "JavaScript Practice Tests | Elmir Mammadli",
   description: "Improve your JavaScript skills with interactive coding challenges",
   openGraph: {
-    title: "JavaScript Practice Tests",
+    title: "JavaScript Practice Tests | Elmir Mammadli",
     description: "Improve your JavaScript skills with interactive coding challenges",
     images: [
       {
         url: "/images/og-image-em.png",
         width: 1200,
         height: 630,
-        alt: "JavaScript Practice Tests",
+        alt: "JavaScript Practice Tests | Elmir Mammadli",
       },
     ],
   },
