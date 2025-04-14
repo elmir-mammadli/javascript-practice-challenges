@@ -128,7 +128,16 @@ export default function TestRunner({ testData }: TestRunnerProps) {
   };
 
   const toggleSolutions = () => {
-    setShowSolutions(!showSolutions);
+    if (!showSolutions) {
+      // Show confirmation dialog only when trying to show solutions
+      const confirmed = window.confirm("Are you sure you want to see solutions?");
+      if (confirmed) {
+        setShowSolutions(true);
+      }
+    } else {
+      // When hiding solutions, no confirmation needed
+      setShowSolutions(false);
+    }
   };
 
   const applySolution = (solutionCode: string) => {
@@ -301,12 +310,6 @@ export default function TestRunner({ testData }: TestRunnerProps) {
                 <div key={index} className="border rounded-lg p-3 bg-white">
                   <div className="flex justify-between items-center mb-2">
                     <h4 className="font-medium text-gray-900">{solution.title}</h4>
-                    <button
-                      onClick={() => applySolution(solution.code)}
-                      className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
-                    >
-                      Apply Solution
-                    </button>
                   </div>
                   {solution.description && (
                     <p className="text-sm text-gray-600 mb-2">{solution.description}</p>

@@ -49,7 +49,7 @@ export const spyCodeTest = {
       {
         title: "Using Character Range Check",
         code: `function decodeSpy(str) {
-  return str.split("").filter(c => c >= "a" && c <= "z").join("");
+  return str.split("").filter(c => c === c.toLowerCase()).join("");
 }`,
         description: "This solution compares each character with 'a' and 'z' to check if it's a lowercase letter."
       },
