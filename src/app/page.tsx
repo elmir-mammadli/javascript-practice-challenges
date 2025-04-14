@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { tests } from '@/data/tests';
+import Tag from '@/components/ui/Tag';
 
 export default function Home() {
   return (
@@ -28,7 +29,14 @@ export default function Home() {
                 >
                   <div className="px-6 py-4 flex items-center">
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-lg font-bold text-gray-900 truncate">{test.title}</h4>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-lg font-bold text-gray-900 truncate">{test.title}</h4>
+                        {test.tags && test.tags.map((tag, index) => (
+                          <Tag key={index} color={tag.color || 'blue'}>
+                            {tag.label}
+                          </Tag>
+                        ))}
+                      </div>
                       <p className="mt-1 text-sm text-gray-500">{test.description.en.title}</p>
                     </div>
                     <div className="ml-4 flex-shrink-0">

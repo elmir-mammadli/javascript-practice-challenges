@@ -33,6 +33,10 @@ export interface TestData {
   functionName: string;
   testCases: TestCase[];
   solutions?: Solution[];
+  tags?: {
+    label: string;
+    color?: 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'pink';
+  }[];
 }
 
 export interface SuccessResult {

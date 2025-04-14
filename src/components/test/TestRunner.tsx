@@ -24,10 +24,19 @@ export default function TestRunner({ testData }: TestRunnerProps) {
   const [prevTestId, setPrevTestId] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string>("");
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Generate a session ID on component mount to track user sessions
   useEffect(() => {
     setSessionId(Date.now().toString());
+    
+    // Show loading state for 0.5 second when component mounts
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   // Load saved code from localStorage when the test changes
@@ -36,6 +45,12 @@ export default function TestRunner({ testData }: TestRunnerProps) {
     setIsCompleted(false);
     setResults(null);
     setError(null);
+    
+    // Show loading state for 1 second when task changes
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
     
     // Load saved code for this test if it exists
     const savedCode = localStorage.getItem(`code_${testData.id}`);
@@ -53,6 +68,8 @@ export default function TestRunner({ testData }: TestRunnerProps) {
     
     // Find previous and next test IDs
     fetchAdjacentTestIds();
+    
+    return () => clearTimeout(timer);
   }, [testData.id, sessionId]);
 
   // Save code to localStorage whenever it changes
@@ -94,7 +111,7 @@ export default function TestRunner({ testData }: TestRunnerProps) {
         setIsCompleted(false);
       }
       setIsRunning(false);
-    }, 500);
+    }, 300);
   };
 
   const fetchAdjacentTestIds = async () => {
@@ -173,6 +190,18 @@ export default function TestRunner({ testData }: TestRunnerProps) {
 
   return (
     <>
+      {isLoading && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-70 z-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-8 max-w-md w-full shadow-xl">
+            <div className="flex flex-col items-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mb-4"></div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">Loading Challenge</h3>
+              <p className="text-gray-500 text-center">Preparing your coding environment</p>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="bg-gray-800 text-white p-6">
           <div className="flex justify-between items-center">
@@ -265,7 +294,7 @@ export default function TestRunner({ testData }: TestRunnerProps) {
               <button
                 onClick={runTest}
                 disabled={isRunning}
-                className={`px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors ${
+                className={`px-4 py-2 bg-[#00a2ed] text-white rounded hover:bg-[#0090d3] focus:outline-none focus:ring-2 focus:ring-[#00aeff] focus:ring-opacity-50 transition-colors ${
                   isRunning ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
               >

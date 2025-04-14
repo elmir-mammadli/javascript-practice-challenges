@@ -1,6 +1,14 @@
-export const lessThan99Test = {
+import { TestData } from '@/types';
+
+export const lessThan99Test: TestData = {
   id: "less-than-99",
   title: "Task 4: Less Than 99",
+  tags: [
+    {
+      label: "NEW",
+      color: "green"
+    }
+  ],
   description: {
     en: {
       title: "Given two numbers, return true if the sum of both numbers is less than 99. Otherwise return false.",
