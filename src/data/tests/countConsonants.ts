@@ -22,7 +22,7 @@ countConsonants("Palm") ➞ 3
 countConsonants("Prediction") ➞ 6
 
 Notes:
-All letters except a, e, i, o, u are considered consonants.
+Consonants are all letters except the vowels: a, e, i, o, u.
 All test cases are one word and only contain letters.`
     },
     ru: {
@@ -37,7 +37,7 @@ countConsonants("Palm") ➞ 3
 countConsonants("Prediction") ➞ 6
 
 Примечания:
-Все буквы, кроме a, e, i, o, u, считаются согласными.
+Согласные - это все буквы, кроме гласных: a, e, i, o, u.
 Все тестовые примеры представляют собой одно слово и содержат только буквы.`
     }
   },
