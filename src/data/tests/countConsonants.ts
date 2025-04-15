@@ -85,6 +85,28 @@ countConsonants("Prediction") ➞ 6
       expected: 6
     }
   ],
+  resources: [
+    {
+      title: "Regular Expressions in JavaScript",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions",
+      description: "Learn how to use regular expressions to match character patterns in text, which can help with identifying consonants."
+    },
+    {
+      title: "JavaScript String Methods",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+      description: "Documentation on various string methods like toLowerCase(), split(), and match() that can be useful for this challenge."
+    },
+    {
+      title: "JavaScript Array Methods",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+      description: "Learn about filter(), map(), and other array methods that can help process strings as arrays of characters."
+    },
+    {
+      title: "ASCII Character Codes",
+      url: "https://www.w3schools.com/charsets/ref_html_ascii.asp",
+      description: "Reference for ASCII character codes which can be used to identify letters in a string."
+    }
+  ],
   solutions: [
     {
       title: "Using Regular Expression",

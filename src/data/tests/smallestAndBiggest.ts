@@ -39,7 +39,7 @@ minMax([1]) ➞ [1, 1]
 Все тестовые массивы будут иметь хотя бы один элемент и являются допустимыми.`
     }
   },
-  initialCode: 'function minMax(arr) {\n\treturn [Math.min(...arr), Math.max(...arr)]\n}',
+  initialCode: 'function minMax(arr) {\n\ // Your code here\n}',
   functionName: 'minMax',
   testCases: [
     {
@@ -69,6 +69,33 @@ minMax([1]) ➞ [1, 1]
     {
       input: [[0, 0, 0, 0]],
       expected: [0, 0]
+    }
+  ],
+  resources: [
+    {
+      title: "JavaScript Math.min()",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min",
+      description: "Documentation on the Math.min() method which returns the lowest-valued number in a list of arguments."
+    },
+    {
+      title: "JavaScript Math.max()",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max",
+      description: "Documentation on the Math.max() method which returns the largest of the numbers given as input parameters."
+    },
+    {
+      title: "JavaScript Spread Syntax (...)",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+      description: "Learn about the spread syntax which allows an iterable to be expanded in places where zero or more arguments are expected."
+    },
+    {
+      title: "JavaScript Arrays",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+      description: "Comprehensive documentation on JavaScript arrays and their methods."
+    },
+    {
+      title: "JavaScript Array.sort() Method",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+      description: "Alternative approach: Learn how to sort an array which can be used to find minimum and maximum values."
     }
   ],
   solutions: [

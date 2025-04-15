@@ -16,6 +16,12 @@ export interface Solution {
   description?: string;
 }
 
+export interface Resource {
+  title: string;
+  url: string;
+  description?: string;
+}
+
 export interface TestData {
   id: string;
   title: string;
@@ -33,6 +39,7 @@ export interface TestData {
   functionName: string;
   testCases: TestCase[];
   solutions?: Solution[];
+  resources?: Resource[];
   tags?: {
     label: string;
     color?: 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'pink';

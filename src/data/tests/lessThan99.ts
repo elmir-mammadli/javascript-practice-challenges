@@ -87,6 +87,28 @@ lessThan99(3, 77) ➞ true
       expected: false
     },
   ],
+  resources: [
+    {
+      title: "JavaScript Arithmetic Operators",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Addition",
+      description: "Learn about addition and other arithmetic operators in JavaScript."
+    },
+    {
+      title: "JavaScript Comparison Operators",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Less_than",
+      description: "Documentation on comparison operators including 'less than' which is essential for this challenge."
+    },
+    {
+      title: "JavaScript Logical Operators",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT",
+      description: "Understand logical operators which can be useful for creating conditional logic."
+    },
+    {
+      title: "JavaScript if...else Statement",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+      description: "Learn how to use conditional statements in JavaScript."
+    }
+  ],
   solutions: [
     {
       title: "Using Simple Addition and Comparison",

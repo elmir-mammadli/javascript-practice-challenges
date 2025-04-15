@@ -19,6 +19,7 @@ export default function TestRunner({ testData }: TestRunnerProps) {
   const [language, setLanguage] = useState<'en' | 'ru'>('en');
   const [isRunning, setIsRunning] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
+  const [showResources, setShowResources] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [nextTestId, setNextTestId] = useState<string | null>(null);
   const [prevTestId, setPrevTestId] = useState<string | null>(null);
@@ -188,6 +189,10 @@ export default function TestRunner({ testData }: TestRunnerProps) {
     localStorage.removeItem(`completed_tests_${sessionId}`);
   };
 
+  const toggleResources = () => {
+    setShowResources(!showResources);
+  };
+
   return (
     <>
       {isLoading && (
@@ -320,6 +325,15 @@ export default function TestRunner({ testData }: TestRunnerProps) {
                 </button>
               )}
               
+              {testData.resources && testData.resources.length > 0 && (
+                <button
+                  onClick={toggleResources}
+                  className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-colors"
+                >
+                  {showResources ? 'Hide Resources' : 'Show Resources'}
+                </button>
+              )}
+              
               {isCompleted && nextTestId && (
                 <Link 
                   href={`/test/${nextTestId}`}
@@ -354,6 +368,25 @@ export default function TestRunner({ testData }: TestRunnerProps) {
             </div>
           )}
 
+          {showResources && testData.resources && (
+            <div className="mt-4 border rounded-lg p-4 bg-gray-50">
+              <h3 className="text-lg font-medium mb-3 text-gray-900">Helpful Resources</h3>
+              <div className="space-y-3">
+                {testData.resources.map((resource, index) => (
+                  <div key={index} className="border rounded-lg p-3 bg-white">
+                    <Link href={resource.url} target="_blank" className='group' rel="noopener noreferrer">
+                    <div className="flex justify-between items-center mb-1">
+                      <h4 className="font-medium text-gray-900 group-hover:text-blue-500 transition-colors group-hover:underline">{resource.title}</h4>
+                    </div>
+                    {resource.description && (
+                      <p className="text-sm text-gray-600">{resource.description}</p>
+                    )}</Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
           {showSolutions && testData.solutions && (
             <div className="mt-4 border rounded-lg p-4 bg-gray-50">
               <h3 className="text-lg font-medium mb-3 text-gray-900">Solutions</h3>
