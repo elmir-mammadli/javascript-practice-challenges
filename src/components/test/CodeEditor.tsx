@@ -3,55 +3,7 @@
 import { useState, useEffect } from 'react';
 import Editor, { OnMount, loader } from '@monaco-editor/react';
 
-// Pre-configure Monaco with TypeScript definitions that could help with autocomplete
-loader.init().then(monaco => {
-  // TYPESCRIPT TYPE CHECKING: TO ENABLE TYPE CHECKING, REMOVE OR COMMENT OUT THIS BLOCK
-  monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-    noSemanticValidation: true,
-    noSyntaxValidation: false, // Keep basic syntax validation
-    noSuggestionDiagnostics: true,
-    diagnosticCodesToIgnore: [2304, 2552, 2580, 2551, 2339] // Common type errors
-  });
-
-  // Add TypeScript definitions for common JavaScript functions and methods
-  monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
-    target: monaco.languages.typescript.ScriptTarget.ES2020,
-    allowNonTsExtensions: true,
-    moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-    module: monaco.languages.typescript.ModuleKind.CommonJS,
-    noEmit: true,
-    typeRoots: ["node_modules/@types"],
-    // TYPESCRIPT TYPE CHECKING: TO ENABLE TYPE CHECKING, REMOVE OR SET THESE OPTIONS TO FALSE
-    noSemanticValidation: true,
-    noSyntaxValidation: false, // Keep syntax validation
-  });
-  
-  // Add some common DOM types
-  const libSource = `
-    interface Array<T> {
-      map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
-      filter(predicate: (value: T, index: number, array: T[]) => boolean, thisArg?: any): T[];
-      reduce<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U;
-      forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
-      find(predicate: (value: T, index: number, obj: T[]) => boolean, thisArg?: any): T | undefined;
-      some(predicate: (value: T, index: number, array: T[]) => boolean, thisArg?: any): boolean;
-      every(predicate: (value: T, index: number, array: T[]) => boolean, thisArg?: any): boolean;
-      sort(compareFn?: (a: T, b: T) => number): this;
-      join(separator?: string): string;
-    }
-    
-    interface String {
-      split(separator: string | RegExp, limit?: number): string[];
-      match(regexp: RegExp): RegExpMatchArray | null;
-      replace(searchValue: string | RegExp, replaceValue: string): string;
-      trim(): string;
-      toLowerCase(): string;
-      toUpperCase(): string;
-    }
-  `;
-  
-  monaco.languages.typescript.javascriptDefaults.addExtraLib(libSource, 'ts:filename/global.d.ts');
-});
+// Don't initialize Monaco here, instead do it in useEffect for client-side only
 
 interface CodeEditorProps {
   initialCode: string;
@@ -66,6 +18,59 @@ export default function CodeEditor({ initialCode, onChange, onRunTests }: CodeEd
   useEffect(() => {
     setCode(initialCode);
   }, [initialCode]);
+
+  // Initialize Monaco only on the client side
+  useEffect(() => {
+    // Pre-configure Monaco with TypeScript definitions that could help with autocomplete
+    loader.init().then(monaco => {
+      // TYPESCRIPT TYPE CHECKING: TO ENABLE TYPE CHECKING, REMOVE OR COMMENT OUT THIS BLOCK
+      monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+        noSemanticValidation: true,
+        noSyntaxValidation: false, // Keep basic syntax validation
+        noSuggestionDiagnostics: true,
+        diagnosticCodesToIgnore: [2304, 2552, 2580, 2551, 2339] // Common type errors
+      });
+
+      // Add TypeScript definitions for common JavaScript functions and methods
+      monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
+        target: monaco.languages.typescript.ScriptTarget.ES2020,
+        allowNonTsExtensions: true,
+        moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+        module: monaco.languages.typescript.ModuleKind.CommonJS,
+        noEmit: true,
+        typeRoots: ["node_modules/@types"],
+        // TYPESCRIPT TYPE CHECKING: TO ENABLE TYPE CHECKING, REMOVE OR SET THESE OPTIONS TO FALSE
+        noSemanticValidation: true,
+        noSyntaxValidation: false, // Keep syntax validation
+      });
+      
+      // Add some common DOM types
+      const libSource = `
+        interface Array<T> {
+          map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
+          filter(predicate: (value: T, index: number, array: T[]) => boolean, thisArg?: any): T[];
+          reduce<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U;
+          forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
+          find(predicate: (value: T, index: number, obj: T[]) => boolean, thisArg?: any): T | undefined;
+          some(predicate: (value: T, index: number, array: T[]) => boolean, thisArg?: any): boolean;
+          every(predicate: (value: T, index: number, array: T[]) => boolean, thisArg?: any): boolean;
+          sort(compareFn?: (a: T, b: T) => number): this;
+          join(separator?: string): string;
+        }
+        
+        interface String {
+          split(separator: string | RegExp, limit?: number): string[];
+          match(regexp: RegExp): RegExpMatchArray | null;
+          replace(searchValue: string | RegExp, replaceValue: string): string;
+          trim(): string;
+          toLowerCase(): string;
+          toUpperCase(): string;
+        }
+      `;
+      
+      monaco.languages.typescript.javascriptDefaults.addExtraLib(libSource, 'ts:filename/global.d.ts');
+    });
+  }, []); // Empty dependency array ensures this only runs once on client-side
 
   const handleEditorWillMount = () => {
     // TYPESCRIPT TYPE CHECKING: TO ENABLE VALIDATION, REMOVE THIS FUNCTION OR RETURN EMPTY OBJECT
